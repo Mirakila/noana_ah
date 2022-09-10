@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:noana/routes/routes.dart';
+import 'package:noana/screens/authentification/sign.dart';
+import 'package:noana/screens/authentification/sign_in.dart';
+import 'package:noana/screens/authentification/sign_up.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,65 +13,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Navigation Over Screens',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
 //      home: MainPage(),
 
       // Declare routes
-      routes: {
-        // Main initial route
-        '/': (context) => MainPage(),
-        // Second route
-        '/second': (context) => SecondPage(),
-      },
-      initialRoute: '/',
-    );
-  }
-}
+      routes: routes,
 
-class MainPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) =>
-      Scaffold(
-        appBar: AppBar(
-          title: Text('Navigation over screens'),
-        ),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              // Navigate using declared route name
-              ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/second'),
-                child: Text('Navigate using routes'),
-              ),
-              // Navigate using simple push method
-              ElevatedButton(
-                onPressed: () =>
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SecondPage()),
-                    ),
-                child: Text('Navigate using push method'),
-              )
-            ],
-          ),
-        ),
-      );
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second screen'),
-      ),
-      body: Container(
-        child: ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text('Back'),
-        ),
-      ),
+      initialRoute: '/sign',
     );
   }
 }
