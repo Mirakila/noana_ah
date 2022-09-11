@@ -63,7 +63,9 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               OutlinedButton(
-                onPressed: () => {},
+                onPressed: () {
+                  Navigator.pushNamed(context, "/my_location");
+                },
                 child: const Text("Se connecter"),
                 style: ButtonStyle(
                   foregroundColor:

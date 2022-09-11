@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noana/screens/templates/custom_back_button.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -11,7 +12,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Réinitialiser mot de passe"),
+        title: const Text("Réinitialiser mot de passe"),
+        leading: const CustomBackButton(),
         automaticallyImplyLeading: true,
       ),
       body: Container(
