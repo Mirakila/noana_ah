@@ -27,8 +27,9 @@ class _NearestState extends State<Nearest> {
           Row(
             children: [
               DropdownButton(
-                value: _filter,
-                icon: const Icon(Icons.arrow_downward),
+                hint: Text("Filtrer"),
+                // value: _filter,
+                icon: const Icon(Icons.filter_list),
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple),
                 underline: Container(
