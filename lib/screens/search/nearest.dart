@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:noana/screens/templates/custom_back_button.dart';
 import 'package:noana/screens/templates/default_drawer.dart';
+import 'package:anim_search_bar/anim_search_bar.dart';
 
 class Nearest extends StatefulWidget {
   const Nearest({Key? key}) : super(key: key);
@@ -9,6 +10,8 @@ class Nearest extends StatefulWidget {
 
 class _NearestState extends State<Nearest> {
   List<String> _filters = <String>['One', 'Two', 'Three', 'Four'];
+
+  TextEditingController _searchController = TextEditingController();
 
   String _filter = "";
 
@@ -22,40 +25,124 @@ class _NearestState extends State<Nearest> {
         automaticallyImplyLeading: true,
       ),
       endDrawer: const DefaultDrawer(),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              DropdownButton(
-                hint: Text("Filtrer"),
-                // value: _filter,
-                icon: const Icon(Icons.filter_list),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DropdownButton(
+                  hint: Text("Filtrer "),
+                  icon: const Icon(Icons.filter_list, size: 16.0),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _filter = value!;
+                    });
+                  },
+                  items: _filters.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
-                onChanged: (String? value) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    _filter = value!;
-                  });
-                },
-                items: _filters.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            ],
-          ),
-          ListView(
-            children: [],
-            shrinkWrap: true,
-          ),
-        ],
+                AnimSearchBar(
+                  width: 250,
+                  textController: _searchController,
+                  rtl: true,
+                  helpText: "Rechercher",
+                  onSuffixTap: () {
+                    setState(() {
+                      _searchController.clear();
+                    });
+                  },
+                ),
+              ],
+            ),
+            ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                ListTile(
+                  leading: Image(
+                    image: AssetImage("assets/images/burger.jpg"),
+                    fit: BoxFit.scaleDown,
+                  ),
+                  title: const Text('Cheese Burger'),
+                  subtitle: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'La Gastronomie Pizza\n',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                            text: 'Analakely, Antananarivo',
+                            style: TextStyle(fontStyle: FontStyle.italic)),
+                      ],
+                    ),
+                  ),
+                  trailing: Icon(Icons.favorite_border),
+                  onTap: () {
+                    // Navigator.pop(context);
+                    // Navigator.pushNamed(context, '/profile');
+                  },
+                ),
+                ListTile(
+                  leading: Image(
+                    image: AssetImage("assets/images/burger.jpg"),
+                    fit: BoxFit.scaleDown,
+                  ),
+                  title: const Text('Cheese Burger'),
+                  subtitle: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'La Gastronomie Pizza\n',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                            text: 'Analakely, Antananarivo',
+                            style: TextStyle(fontStyle: FontStyle.italic)),
+                      ],
+                    ),
+                  ),
+                  trailing: Icon(Icons.favorite_border),
+                  onTap: () {
+                    // Navigator.pop(context);
+                    // Navigator.pushNamed(context, '/profile');
+                  },
+                ),
+                ListTile(
+                  leading: Image(
+                    image: AssetImage("assets/images/burger.jpg"),
+                    fit: BoxFit.scaleDown,
+                  ),
+                  title: const Text('Cheese Burger'),
+                  subtitle: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'La Gastronomie Pizza\n',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                            text: 'Analakely, Antananarivo',
+                            style: TextStyle(fontStyle: FontStyle.italic)),
+                      ],
+                    ),
+                  ),
+                  trailing: Icon(Icons.favorite_border),
+                  onTap: () {
+                    // Navigator.pop(context);
+                    // Navigator.pushNamed(context, '/profile');
+                  },
+                ),
+              ],
+              shrinkWrap: true,
+            ),
+          ],
+        ),
       ),
     );
   }
